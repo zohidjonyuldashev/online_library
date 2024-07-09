@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/online_library
+    username: postgres
+    password: 2004
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: localhost
+    port: 1025
+    username: zohidjon
+    password: 123
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+  application:
+    security:
+      jwt:
+        secret-key: 9B4555CEB62AD8F6430091057409A1CBE7BA97FBCFCBFB18BA75413EDC22854B
+        expiration: 86400000
+    mailing:
+      frontend:
+        activation-url: http://localhost:4200/activate-account
+    file:
+      uploads:
+        photos-output-path: ./uploads
+server:
+  port: 8088
