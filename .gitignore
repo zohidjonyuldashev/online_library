@@ -153,3 +153,5 @@ fabric.properties
 /.idea/vcs.xml
 /backend/.gitignore
 /frontend/.gitignore
+!/online_library.iml
+!/.idea/
