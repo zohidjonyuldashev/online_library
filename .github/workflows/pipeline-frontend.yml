@@ -50,14 +50,16 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Create deployment folder
+        run: ssh -i spring_app.pem ec2-user@${{ secrets.EC2_IP }} "mkdir -p ci-cd"
+
       - name: Copy docker-compose file
-        run: scp -oStrictHostKeyChecking=no docker-compose.yml ec2-user@${{ secrets.EC2_IP }}:~/ci-cd/docker-compose.yml
+        run: scp -i spring_app.pem docker-compose.yml ec2-user@${{ secrets.EC2_IP }}:/home/ec2-user/ci-cd/docker-compose.yml
 
 
       - name: Set ENV variable and deploy
         run: |
-          ssh -oStrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP }} <<EOF
-          mkdir -p ~/ci-cd
+          ssh -i spring_app.pem ec2-user@${{ secrets.EC2_IP }} <<EOF
           cd ~/ci-cd
           docker compose -f docker-compose.yml pull -q
           docker compose -f docker-compose.yml up -d
