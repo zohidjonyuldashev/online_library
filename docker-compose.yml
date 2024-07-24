@@ -10,7 +10,7 @@ services:
     volumes:
       - postgres:/data/postgres
     ports:
-      - 5432:5432
+      - 5433:5432
     networks:
       - spring-demo
     restart: unless-stopped
@@ -22,13 +22,22 @@ services:
       - 1025:1025
   ol-api:
     container_name: ol-api
-    image: ol/ol:1.0.0
+    image: ol/ol:1.0.3
     ports:
       - 8088:8088
     networks:
       - spring-demo
     depends_on:
       - postgres
+  ol-ui:
+    container_name: ol-ui
+    image: ol/ol-ui:1.0.0
+    ports:
+      - 8080:80
+    networks:
+      - spring-demo
+    depends_on:
+      - ol-api
 networks:
   spring-demo:
     driver: bridge
