@@ -66,9 +66,5 @@ jobs:
 
       - name: Set ENV variable and deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_IP }} <<EOF
-          cd ~/ci-cd
-          docker compose -f docker-compose.yml pull -q
-          docker compose -f docker-compose.yml up -d
-          EOF
+          ssh -o StrictHostKeyChecking=no -tt ec2-user@${{ secrets.EC2_IP }} "cd ~/ci-cd && docker compose -f docker-compose.yml pull -q && docker compose -f docker-compose.yml up -d"
   
