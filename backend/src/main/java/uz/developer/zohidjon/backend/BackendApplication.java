@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
-import uz.developer.zohidjon.backend.role.Role;
-import uz.developer.zohidjon.backend.role.RoleRepository;
+import uz.developer.zohidjon.backend.entity.Role;
+import uz.developer.zohidjon.backend.repository.RoleRepository;
 
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 @EnableAsync
